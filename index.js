@@ -3,9 +3,10 @@
  */
 
 exports.start = function(features, config) {
+    var args = Array.prototype.slice.call(arguments, 1);
     features.forEach(function(feature) {
         if (feature.init && typeof feature.init === 'function') {
-            feature.init(config || {});
+            feature.init.apply(null, args);
         }
     });
     features.forEach(function(feature) {
